@@ -317,45 +317,4 @@ class Flight
     {
         return $this->pilot;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->flight = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add flight
-     *
-     * @param \AppBundle\Entity\Reservation $flight
-     *
-     * @return Flight
-     */
-    public function addFlight(\AppBundle\Entity\Reservation $flight)
-    {
-        $this->flight[] = $flight;
-
-        return $this;
-    }
-
-    /**
-     * Remove flight
-     *
-     * @param \AppBundle\Entity\Reservation $flight
-     */
-    public function removeFlight(\AppBundle\Entity\Reservation $flight)
-    {
-        $this->flight->removeElement($flight);
-    }
-
-    /**
-     * Get flight
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getFlight()
-    {
-        return $this->flight;
-    }
 }
