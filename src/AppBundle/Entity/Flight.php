@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Flight
 {
     /**
+     * @ORN\ManyToOne(targetEntity="AppBundle\Entity\Site")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $departure;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -62,7 +68,6 @@ class Flight
      * @ORM\Column(name="wasDone", type="boolean")
      */
     private $wasDone;
-
 
     /**
      * Get id
