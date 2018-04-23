@@ -81,7 +81,7 @@ class User
     private $pilot;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="passenger")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="passenger")
      */
     private $passenger;
 
@@ -345,5 +345,39 @@ class User
     public function getPilot()
     {
         return $this->pilot;
+    }
+
+    /**
+     * Add passenger
+     *
+     * @param \AppBundle\Entity\User $passenger
+     *
+     * @return User
+     */
+    public function addPassenger(\AppBundle\Entity\User $passenger)
+    {
+        $this->passenger[] = $passenger;
+
+        return $this;
+    }
+
+    /**
+     * Remove passenger
+     *
+     * @param \AppBundle\Entity\User $passenger
+     */
+    public function removePassenger(\AppBundle\Entity\User $passenger)
+    {
+        $this->passenger->removeElement($passenger);
+    }
+
+    /**
+     * Get passenger
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPassenger()
+    {
+        return $this->passenger;
     }
 }

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% block form1 %}
+        <h1>Review creation</h1>
+
+        {{ form_start(form_review) }}
+        {{ form_widget(form_review) }}
+        <input type="submit" value="Create" />
+        {{ form_end(form_review) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('review_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    {% endblock %}
+
+
+    {% block form2 %}
+        <h1>User creation</h1>
+
+        {{ form_start(form_user) }}
+        {{ form_widget(form_user) }}
+        <input type="submit" value="Create" />
+        {{ form_end(form_user) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('user_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    {% endblock %}
+
+{% endblock %}
