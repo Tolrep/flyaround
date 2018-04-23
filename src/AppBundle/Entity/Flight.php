@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Flight
 {
     /**
+
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PlaneModel", inversedBy="planes")
      * @ORM\JoinColumn(nullable=false)
      */
