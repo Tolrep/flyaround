@@ -13,6 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Flight
 {
     /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PlaneModel", inversedBy="planes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $plane;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="departure")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -89,7 +95,7 @@ class Flight
 
     public function __toString()
     {
-        return $this->departure->name . "-" . $this->arrival->name;
+        return $this->departure . "-" . $this->arrival;
     }
 
     /**
@@ -357,5 +363,29 @@ class Flight
     public function getFlight()
     {
         return $this->flight;
+    }
+
+    /**
+     * Set plane
+     *
+     * @param \AppBundle\Entity\PlaneModel $plane
+     *
+     * @return Flight
+     */
+    public function setPlane(\AppBundle\Entity\PlaneModel $plane)
+    {
+        $this->plane = $plane;
+
+        return $this;
+    }
+
+    /**
+     * Get plane
+     *
+     * @return \AppBundle\Entity\PlaneModel
+     */
+    public function getPlane()
+    {
+        return $this->plane;
     }
 }

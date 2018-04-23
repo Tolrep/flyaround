@@ -13,6 +13,11 @@ use Doctrine\ORM\Mapping as ORM;
 class PlaneModel
 {
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="departure")
+     */
+    private $planes;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="id", type="integer")
@@ -56,6 +61,10 @@ class PlaneModel
      */
     private $isAvailable;
 
+    public function __toString()
+    {
+        return $this->model;
+    }
 
     /**
      * Get id
@@ -185,5 +194,46 @@ class PlaneModel
     public function getIsAvailable()
     {
         return $this->isAvailable;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->plane = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add plane
+     *
+     * @param \AppBundle\Entity\Flight $plane
+     *
+     * @return PlaneModel
+     */
+    public function addPlane(\AppBundle\Entity\Flight $plane)
+    {
+        $this->plane[] = $plane;
+
+        return $this;
+    }
+
+    /**
+     * Remove plane
+     *
+     * @param \AppBundle\Entity\Flight $plane
+     */
+    public function removePlane(\AppBundle\Entity\Flight $plane)
+    {
+        $this->plane->removeElement($plane);
+    }
+
+    /**
+     * Get plane
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlane()
+    {
+        return $this->plane;
     }
 }
