@@ -109,7 +109,7 @@ class ReviewController extends Controller
      */
     public function deleteAction(Request $request, Review $review)
     {
-        $form = $this->createDeleteForm($request);
+        $form = $this->createDeleteForm($review);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
