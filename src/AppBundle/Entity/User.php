@@ -2,12 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 class User
@@ -19,7 +23,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -88,6 +92,16 @@ class User
     /**
      * @return string
      */
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pilot = new ArrayCollection();
+        $this->passenger = new ArrayCollection();
+        $this->reviewAuthor = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -271,13 +285,6 @@ class User
     public function getIsACertifiedPilot()
     {
         return $this->isACertifiedPilot;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reviewAuthor = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
